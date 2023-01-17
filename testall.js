@@ -6,27 +6,31 @@ function scrape()
     minprice = parseInt(localStorage.getItem("minvalue"));
     const cheerio = require('cheerio');
 
+    async function test(url){
+        try{
+            const temp = await axios.get(url);
+        }
+        catch(e)
+        {
+            document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'; 
+        }
+    }
+
     async function extractProductDetailsAmazon(url) {
-    try{
-        const response = await axios.get(url);
-        const $ = cheerio.load(response.data);
-        const products = [];
-        $('.s-result-item').each((i, element) => {
-        const name = $(element).find('.s-line-clamp-2').text().trim();
-        const price = $(element).find('.a-offscreen').text().trim().split("$")[1];
-        const imageUrl = $(element).find('.s-image').attr('src');
-        const productUrl = $(element).find('.a-link-normal').attr('href');
-        products.push({ name, price, imageUrl, productUrl });
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const products = [];
+    $('.s-result-item').each((i, element) => {
+    const name = $(element).find('.s-line-clamp-2').text().trim();
+    const price = $(element).find('.a-offscreen').text().trim().split("$")[1];
+    const imageUrl = $(element).find('.s-image').attr('src');
+    const productUrl = $(element).find('.a-link-normal').attr('href');
+    products.push({ name, price, imageUrl, productUrl });
     });
     const productsArray = Object.values(products);
     return productsArray.sort((a, b) => {
         return a.price - b.price
     });
-    }
-    catch(e)
-    {
-        document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'; 
-    }
     }
 
     async function extractProductDetailsebay(url) {
@@ -67,6 +71,9 @@ function scrape()
     let leastpriceurl = "";
     let leastpriceimg = "";
     let leastpricewebsite = "";
+
+    test(e_url);
+
     extractProductDetailsAmazon(a_url).then(products => {
         pdata += '<h1>Amazon</h1><div class="amazon">';
         for(i=0;i<products.length-1;i++)
