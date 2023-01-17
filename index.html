@@ -1,0 +1,50 @@
+<!Doctype html>
+    <head>
+        <title>Shopper's Search|Best price anytime</title>
+        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <script>
+            localStorage.setItem("minvalue",0);
+            function show_value2(x)
+            {       
+                document.getElementById("slider_value2").innerHTML=x;
+            }
+            function store()
+            {
+                if(document.getElementById("in").value!="")
+                {
+                localStorage.setItem("searchquery",document.getElementById("in").value);
+                localStorage.setItem("minvalue",document.getElementById("slider_value2").innerHTML);
+                }
+                else
+                    alert("Enter a valid input");
+            }
+        </script>
+    </head>
+    <body>
+        <div class="topbar">
+            <p>Shopper's Search</p>
+            <p class="topbarlogin">Login</p>
+        </div>
+        <div class="main">
+            <h1>Shopper's Search</h1>
+        </div>
+        <div class="sbutton">
+                <input id="in" class = "box" type="text" name="searchbox" placeholder="search" autofocus required/>
+        </div>
+        <div style="display: flex;justify-content: center;">
+            Minimun value : 
+        <div class="slider">
+            <input type="range" min="0" max="100000" step="100" name="sld6" value=0 onchange="show_value2(this.value)">
+        </div>
+        <span id="slider_value2" style="color:white;font-weight:bold;">0</span>
+        </div>
+        <div class="sbutton">
+            <form style="width:100%" action="searchresultspage.html">
+                <input class = "but" type="submit" name="submit" value="search" onclick="store()"/>
+            </form>
+        </div>
+        <footer>
+            <p class="copy">Copyrights reserved 2022&copy</p>
+        </footer>
+    </body>
+</html>
