@@ -12,7 +12,7 @@ function scrape()
     }
     catch(e)
     {
-        document.write('<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'); 
+        document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'; 
     }
     const $ = cheerio.load(response.data);
     const products = [];
