@@ -7,7 +7,13 @@ function scrape()
     const cheerio = require('cheerio');
 
     async function extractProductDetailsAmazon(url) {
-    const response = await axios.get(url);
+    try{
+        const response = await axios.get(url);
+    }
+    catch(e)
+    {
+        document.write('<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'); 
+    }
     const $ = cheerio.load(response.data);
     const products = [];
     $('.s-result-item').each((i, element) => {
