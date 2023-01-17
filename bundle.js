@@ -20639,14 +20639,9 @@ function scrape()
     async function extractProductDetailsAmazon(url) {
     try{
         const response = await axios.get(url);
-    }
-    catch(e)
-    {
-        document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'; 
-    }
-    const $ = cheerio.load(response.data);
-    const products = [];
-    $('.s-result-item').each((i, element) => {
+        const $ = cheerio.load(response.data);
+        const products = [];
+        $('.s-result-item').each((i, element) => {
         const name = $(element).find('.s-line-clamp-2').text().trim();
         const price = $(element).find('.a-offscreen').text().trim().split("$")[1];
         const imageUrl = $(element).find('.s-image').attr('src');
@@ -20657,6 +20652,11 @@ function scrape()
     return productsArray.sort((a, b) => {
         return a.price - b.price
     });
+    }
+    catch(e)
+    {
+        document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'; 
+    }
     }
 
     async function extractProductDetailsebay(url) {
