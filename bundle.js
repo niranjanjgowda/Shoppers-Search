@@ -20684,7 +20684,7 @@ function scrape()
         const products = [];
         $('._1AtVbE').each((i, element) => {
         const name = $(element).find('._4rR01T').text().trim();
-        const price = $(element).find('._30jeq3').text().trim().split("$")[1];
+        const price = $(element).find('._30jeq3').text().trim();
         const imageUrl = $(element).find('._396cs4').attr('src');
         const productUrl = $(element).find('._1fQZEK').attr('href');
         products.push({ name, price, imageUrl, productUrl });
@@ -20713,7 +20713,7 @@ function scrape()
         {
          pdata += '<div class="products"> <a target="_blank" href="'+'https://www.amazon.com'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["price"]*coverstion_rate_inr_to_usd+'</span>'
+            +'<span id = "price">'+"&#8377;"+(products[i]["price"]*coverstion_rate_inr_to_usd).toFixed(0)+'</span>'
     +'</a></div>';
             
             if(leastprice>=products[i]["price"]*80)
@@ -20739,9 +20739,8 @@ function scrape()
         {
          fdata += '<div class="products"> <a target="_blank" href="'+'https://www.flipkart.com'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["price"]+'</span>'
-    +'</a></div>';
-
+            +'<span id = "price">'+products[i]["price"]+'</span>'+'</a></div>';
+            console.log(products[i]["price"]);
         if(leastprice>=products[i]["price"])
         {
             leastprice = products[i]["price"];
@@ -20765,7 +20764,7 @@ function scrape()
         {
          edata += '<div class="products"> <a target="_blank" href="'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["price"].split("$")[1]*coverstion_rate_inr_to_usd+'</span>'
+            +'<span id = "price">'+"&#8377;"+(products[i]["price"].split("$")[1]*coverstion_rate_inr_to_usd).toFixed(2)+'</span>'
     +'</a></div>';
         }
         }
@@ -20777,7 +20776,7 @@ function scrape()
             document.getElementById("bestmatch").innerHTML = "<h1>best price on "+leastpricewebsite+"</h1>"+
             '<a target="_blank" href = "'+ leastpriceurl +'">+<img src="'+ leastpriceimg +'" alt="'+
             leastpricepricename +'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["price"]+'</span>'+'</a>';
+            +'<span id="price">'+products[i]["price"]+'</span>'+'</a>';
             console.log(leastprice + leastpriceurl + leastpricewebsite);
         }
     });
