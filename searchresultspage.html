@@ -5,6 +5,7 @@
     body{
       background-color: rgb(197, 182, 182);
       color: rgb(30, 112, 112);
+      overflow-x: hidden;
     }
 
     a{
@@ -42,10 +43,12 @@
     .product-list-amazon{
         position: relative;
         top:100px;
+        height: inherit;
     }
     .product-list-flipkart{
         position: relative;
         top: 60px;
+        transform: translate(-1000px,0px); 
     }
     .product-list-ebay{
         position: relative;
@@ -53,35 +56,58 @@
     }
     .amazon{
       display: flex;
+      gap: 30px;
+      width: 99vw;
+      overflow-x: auto;
     }
+
+    .amazon::-webkit-scrollbar{
+      display: none;
+    }
+
     .amazon > .products{
-      margin-left: 100px;
+      background-color: white;
       border: 1px black solid;
       padding: 20px;
       border-radius: 10px;
-  
     }
-    .product-list-amazon{
-      background-color: #cf9f35;
-    }
+
     .flipkart{
       display: flex;
+      gap: 30px;
+      width: 99vw;
+      overflow-x: auto;
     }
+
+    .flipkart::-webkit-scrollbar{
+      display: none;
+    }
+
     .flipkart > .products{
-      margin-left: 100px;
+      background-color: white;
       border: 1px black solid;
       padding: 20px;
       border-radius: 10px;
     }
+
     .E-bay{
       display: flex;
+      gap: 30px;
+      width: 99vw;
+      overflow-x: auto;
     }
+
     .E-bay > .products{
-      margin-left: 100px;
+      background-color: white;
       border: 1px black solid;
       padding: 20px;
       border-radius: 10px;
     }
+
+    .E-bay::-webkit-scrollbar{
+      display: none;
+    }
+
     h1{
       font-size: 50px;
     }
@@ -96,6 +122,11 @@
       left:50%;
       transform: translate(-50%,-50%);
       width: 800px;
+    }
+    #product-list-amazon > img{
+      height: 218px;
+      width: 200px;
+      object-position: center;
     }
     </style>
   </head>

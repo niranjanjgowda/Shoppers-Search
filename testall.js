@@ -2,6 +2,7 @@ const { data } = require('cheerio/lib/api/attributes');
 
 function scrape()
 {
+    let coverstion_rate_inr_to_usd = 81;
     search_query = localStorage.getItem("searchquery");
     minprice = parseInt(localStorage.getItem("minvalue"));
     const cheerio = require('cheerio');
@@ -82,7 +83,7 @@ function scrape()
         {
          pdata += '<div class="products"> <a target="_blank" href="'+'https://www.amazon.com'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["name"]+products[i]["price"]+'</span>'
+            +'<span style="color:red">'+products[i]["price"]*coverstion_rate_inr_to_usd+'</span>'
     +'</a></div>';
             
             if(leastprice>=products[i]["price"]*80)
@@ -108,7 +109,7 @@ function scrape()
         {
          fdata += '<div class="products"> <a target="_blank" href="'+'https://www.flipkart.com'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["name"]+products[i]["price"]+'</span>'
+            +'<span style="color:red">'+products[i]["price"]+'</span>'
     +'</a></div>';
 
         if(leastprice>=products[i]["price"])
@@ -134,7 +135,7 @@ function scrape()
         {
          edata += '<div class="products"> <a target="_blank" href="'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
-            +'<span style="color:red">'+products[i]["name"]+products[i]["price"]+'</span>'
+            +'<span style="color:red">'+products[i]["price"].split("$")[1]*coverstion_rate_inr_to_usd+'</span>'
     +'</a></div>';
         }
         }
