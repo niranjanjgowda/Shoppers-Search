@@ -20744,7 +20744,7 @@ function scrape()
         }
         else
         {
-            document.getElementById("bestflipkart").innerHTML = '<h1 style="margin-top: 170px;margin-left: 80px;">No products</h1>'; 
+            document.getElementById("bestamazon").innerHTML = '<h1 style="margin-top: 60px;margin-left: 20px;">No products</h1>'; 
         }
 
     });
@@ -20753,7 +20753,7 @@ function scrape()
     extractProductDetailsFlipkart(f_url).then(products => {
         fdata = '<h1>FlipKart</h1><div id="flipkart" class="flipkart">';
         let count = 0;
-        leastprice = 2000000;
+        leastprice = 200000;
         leastpriceurl = "";
         for(i=0;i<products.length-1;i++)
         {
@@ -20780,7 +20780,8 @@ function scrape()
             document.getElementById("flipkart").innerHTML = "<h1 style='text-align:center;margin-left:15%;'>No Products Available please try again later</h1>";
         }
 
-        if(leastprice!=200000)
+        console.log(leastprice);
+        if(parseInt(""+leastprice)!=200000)
         {
             document.getElementById("bestflipkart").innerHTML = '<div class="products" style="margin-left: 50px;'
             +'margin-top: 20px;"'
@@ -20792,7 +20793,7 @@ function scrape()
         }
         else
         {
-            document.getElementById("bestflipkart").innerHTML = '<h1 style="margin-top: 170px;margin-left: 80px;">No products</h1>'; 
+            document.getElementById("bestflipkart").innerHTML = '<h1 style="margin-top: 60px;margin-left: 20px;">No products</h1>'; 
         }
 
     });
@@ -20813,7 +20814,7 @@ function scrape()
             +'<span class = "price">'+"&#8377;"+(products[i]["price"].split("$")[1]*coverstion_rate_inr_to_usd).toFixed(2)+'</span>'
     +'</a></div>';
 
-        console.log("leastprice : "+leastprice+"   product price: "+parseFloat((products[i]["price"].split("$")[1]).replaceAll(",","")));
+        //console.log("leastprice : "+leastprice+"   product price: "+parseFloat((products[i]["price"].split("$")[1]).replaceAll(",","")));
         if(parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""))<parseFloat(""+leastprice)&&(parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""))*coverstion_rate_inr_to_usd>minprice))
             {
                 leastprice = parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""));
@@ -20843,7 +20844,7 @@ function scrape()
         }
         else
         {
-            document.getElementById("bestebay").innerHTML = '<h1 style="margin-top: 170px;margin-left: 80px;">No products</h1>'; 
+            document.getElementById("bestebay").innerHTML = '<h1 style="margin-top: 60px;margin-left: 20px;">No products</h1>'; 
         }
 
     });
