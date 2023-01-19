@@ -1,0 +1,254 @@
+body{
+
+    background-color: #705858;
+    /*background-color: rgb(197, 182, 182);*/
+    color: rgb(30, 112, 112);
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+  width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    background: rgba(85, 82, 82, 0.8); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  }
+  
+  ::-webkit-scrollbar-thumb:window-inactive {
+      background: rgba(54, 51, 51, 0.4);
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .topbar{
+      display: flex;
+      flex-direction: row;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #1F0101;
+      color: white;
+      padding-left: 20px;
+      font-size: 20px;
+      z-index: 10;
+      align-items: center;
+  }
+
+  .topbarlogin{
+      text-decoration: none;
+      color: white;
+      position: fixed;
+      right: 0%;
+      padding-right: 30px;
+  }
+
+  .topbar p:hover{
+      color : red;
+      text-decoration: wavy;
+  }
+  .product-list-amazon{
+      position: relative;
+      top:100px;
+      height: inherit;
+  }
+  .product-list-flipkart{
+      position: relative;
+      top: 60px;
+  }
+  .product-list-ebay{
+      position: relative;
+      top: 60px;  
+  }
+
+  .amazon{
+    display: flex;
+    gap: 30px;
+    width: 99vw;
+    height: 450px;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding-left: 20px;
+  }
+
+  .products:hover{
+      transform: scale(1.1);
+  }
+
+  .products:hover .price{
+    color: green;
+    font:25px;
+  }
+  <!--Change this it is not working as intended
+
+  .amazon:hover {
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: left;
+    -webkit-animation-timing-function: linear;
+  }
+
+  @-webkit-keyframes move {
+    100% {
+      transform : translateX(10px);
+    }
+    0% {
+      transform: translateX(1000px);
+    }
+  }
+  -->
+
+  .amazon img{
+    width: 200px;
+    height: 313px;
+    object-fit: contain ;
+  }
+
+  .name{
+    display: block;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+  }
+  .price{
+    color: black;
+    font : 20px;
+  }
+
+  .amazon::-webkit-scrollbar{
+    display: none;
+  }
+
+  .amazon > .products{
+    background-color: white;
+    border: 1px black solid;
+    margin-top: 20px;
+    height: 80%;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .amazon .price{
+    position: relative;
+    top:10px;
+  }
+  .flipkart{
+    display: flex;
+    gap: 30px;
+    width: 99vw;
+    height: 400px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 20px;
+    align-items: center;
+  }
+
+  .flipkart::-webkit-scrollbar{
+    display: none;
+  }
+
+  .flipkart img{
+    height: 250px;
+    object-fit: contain;
+
+  }
+  .flipkart > .products{
+    background-color: white;
+    border: 1px black solid;
+    height: 80%;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .flipkart .price{
+    position: relative;
+    top:50px;
+  }
+
+  .flipkart .name{
+    position: relative;
+  }
+
+  .E-bay{
+    display: flex;
+    gap: 30px;
+    width: 99vw;
+    height:400px;
+    overflow-x: auto;
+    padding-left: 20px;
+  }
+
+  .E-bay img{
+    width: 252px;
+    height: 243px;
+    object-fit: contain ;
+  }
+
+  .E-bay > .products{
+    background-color: white;
+    border: 1px black solid;
+    margin-top: 20px;
+    height: 80%;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .E-bay .name{
+    position: relative;
+    top:10px;
+  }
+  .E-bay .price{
+    position: relative;
+    top: 20px;
+  }
+
+  .E-bay::-webkit-scrollbar{
+    display: none;
+  }
+
+  h1{
+    font-size: 50px;
+    color :black;
+  }
+  #middle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #cors{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 800px;
+  }
+  #product-list-amazon > img{
+    height: 218px;
+    width: 200px;
+    object-position: center;
+  }
+  form{
+    margin-left:350px;
+    margin-top: 20px;
+    display: flex;
+    gap:0px;
+    background-color: #1F0101;
+    width:530px;
+    height:30px;
+    border-radius: 20px;
+    overflow: hidden;
+  }

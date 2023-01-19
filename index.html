@@ -1,7 +1,7 @@
 <!Doctype html>
     <head>
         <title>Shopper's Search|Best price anytime</title>
-        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
         <script>
             localStorage.setItem("minvalue",0);
             function show_value2(x)
@@ -32,7 +32,7 @@
                 <input id="in" class = "box" type="text" name="searchbox" placeholder="search" autofocus required/>
         </div>
         <div style="display: flex;justify-content: center;">
-            Minimun value : 
+            <b>Minimun value :</b> 
         <div class="slider">
             <input type="range" min="0" max="100000" step="100" name="sld6" value=0 onchange="show_value2(this.value)">
         </div>
@@ -44,7 +44,7 @@
             </form>
         </div>
         <footer>
-            <p class="copy">Copyrights reserved 2022&copy</p>
+            <p class="copy"><b>Copyrights reserved 2022&copy</b></p>
         </footer>
     </body>
 </html>

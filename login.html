@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>Login | Shopper's search</title>
+	<style>
+		body{
+			display: flex;
+			justify-content : center;
+			align-items: center;
+			z-index:10; 
+		}
+		.login{
+			background-color:rgba(250,200,200,0.8);
+			position:relative;
+			border : 1px black solid;
+			width : 300px;
+			height : 300px;
+			border-radius:10px;
+			z-index:1;
+		}
+		h1 {
+			text-align:center;
+		}
+		label {
+			display:flex;
+			justify-content:center;
+			font-family:"Calibri";
+			font-size:15px;
+		}
+		button{
+			height=50px;
+		}
+		button:hover{
+			background-color:grey;
+			color:white;
+		}
+		#a{
+			position:absolute;
+			top:80%;
+			left:30%;
+			height:25px;
+		}
+		#b{
+			position:absolute;
+			top:80%;
+			left:50%;
+			height:25px;
+		}
+	</style>
+</head>
+<body background="C:\Users\91997\Downloads\bg.jpeg">
+<div class="login">
+<h1>USER LOGIN</h1><br>
+	<br>
+<label>USERNAME:<input bgcolor="skyblue;" type="text" placeholder="username" maxlengt="20" size="20"></label><br><br>
+<label>PASSWORD:<input type="password" placeholder="password" name="password"></label><br><br><br>
+ <button id = "a" type="submit">Submit</button>
+ <button id = "b"type="submit">Reset</button>
+</div>
+</body>
+</html>
