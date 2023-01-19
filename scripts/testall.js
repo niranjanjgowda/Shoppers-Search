@@ -78,6 +78,7 @@ function scrape()
     extractProductDetailsAmazon(a_url).then(products => {
         pdata += '<h1>Amazon</h1><div id="amazon" class="amazon">';
         let count = 0 ;
+        let leastprice = 200000;
         for(i=0;i<products.length-1;i++)
         {
         if(products[i]["name"]!=""&&products[i]["price"]!=""&&products[i]["price"]>(minprice/80))
@@ -133,7 +134,7 @@ function scrape()
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
             +'<span class = "price">'+products[i]["price"]+'</span>'+'<span class = "name">'
             +products[i]["name"]+'</span>'+'</a></div>';
-        if(leastprice>=parseInt((products[i]["price"].split("₹")[1]).replaceAll(",","")))
+        if((leastprice>=parseInt((products[i]["price"].split("₹")[1]).replaceAll(",","")))&&(parseInt((products[i]["price"].split("₹")[1]).replaceAll(",",""))>=minprice))
         {
             leastprice = parseInt((products[i]["price"].split("₹")[1]).replaceAll(",",""));
             leastpricepricename = products[i]["name"];
@@ -152,7 +153,7 @@ function scrape()
         if(leastprice!=200000)
         {
             document.getElementById("bestflipkart").innerHTML = '<div class="products" style="margin-left: 50px;'
-            +"margin-top: 20px;"
+            +'margin-top: 20px;"'
             +'> <a target="_blank" href="'+leastpriceurl+'">'
             +'<img src="'+leastpriceimg+'" alt="'+leastpricepricename+'" height="" width=""><br>'
             +'<span class = "name">'+leastpricepricename+'</span>'
@@ -181,9 +182,9 @@ function scrape()
             +'<span class = "name">'+products[i]["name"]+'</span>'
             +'<span class = "price">'+"&#8377;"+(products[i]["price"].split("$")[1]*coverstion_rate_inr_to_usd).toFixed(2)+'</span>'
     +'</a></div>';
-        }
+
         console.log("leastprice : "+leastprice+"   product price: "+parseFloat((products[i]["price"].split("$")[1]).replaceAll(",","")));
-        if(parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""))<parseFloat(""+leastprice))
+        if(parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""))<parseFloat(""+leastprice)&&(parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""))*coverstion_rate_inr_to_usd>minprice))
             {
                 leastprice = parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""));
                 leastpricepricename = products[i]["name"];
@@ -191,6 +192,7 @@ function scrape()
                 leastpriceimg = products[i]["imageUrl"];
             }
 
+        }
         }
         edata +="</div>";
         document.getElementById("product-list-ebay").innerHTML = edata;
@@ -202,11 +204,11 @@ function scrape()
         if(leastprice!=200000)
         {
             document.getElementById("bestebay").innerHTML = '<div class="products" style="margin-left: 50px;'
-            +"margin-top: 20px;"
+            +'margin-top: 20px;"'
             +'> <a target="_blank" href="'+leastpriceurl+'">'
             +'<img src="'+leastpriceimg+'" alt="'+leastpricepricename+'" height="" width=""><br>'
             +'<span class = "name">'+leastpricepricename+'</span>'
-            +'<span class = "price">'+"&#8377;"+leastprice+'</span>'
+            +'<span class = "price">'+"&#8377;"+(leastprice*coverstion_rate_inr_to_usd).toFixed(0)+'</span>'
             +'</a></div>';
         }
         else
