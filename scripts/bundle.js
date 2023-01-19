@@ -20763,7 +20763,6 @@ function scrape()
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
             +'<span class = "price">'+products[i]["price"]+'</span>'+'<span class = "name">'
             +products[i]["name"]+'</span>'+'</a></div>';
-        console.log("leastprice : "+leastprice+"   product price: "+parseInt((products[i]["price"].split("₹")[1]).replaceAll(",","")));
         if(leastprice>=parseInt((products[i]["price"].split("₹")[1]).replaceAll(",","")))
         {
             leastprice = parseInt((products[i]["price"].split("₹")[1]).replaceAll(",",""));
@@ -20813,6 +20812,15 @@ function scrape()
             +'<span class = "price">'+"&#8377;"+(products[i]["price"].split("$")[1]*coverstion_rate_inr_to_usd).toFixed(2)+'</span>'
     +'</a></div>';
         }
+        console.log("leastprice : "+leastprice+"   product price: "+parseFloat((products[i]["price"].split("$")[1]).replaceAll(",","")));
+        if(parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""))<parseFloat(""+leastprice))
+            {
+                leastprice = parseFloat((products[i]["price"].split("$")[1]).replaceAll(",",""));
+                leastpricepricename = products[i]["name"];
+                leastpriceurl = products[i]["productUrl"];
+                leastpriceimg = products[i]["imageUrl"];
+            }
+
         }
         edata +="</div>";
         document.getElementById("product-list-ebay").innerHTML = edata;
@@ -20820,6 +20828,22 @@ function scrape()
         {
             document.getElementById("E-bay").innerHTML = "<h1 style='text-align:center;margin-left:15%;'>No Products Available please try again later</h1>";
         }
+
+        if(leastprice!=200000)
+        {
+            document.getElementById("bestebay").innerHTML = '<div class="products" style="margin-left: 50px;'
+            +"margin-top: 20px;"
+            +'> <a target="_blank" href="'+leastpriceurl+'">'
+            +'<img src="'+leastpriceimg+'" alt="'+leastpricepricename+'" height="" width=""><br>'
+            +'<span class = "name">'+leastpricepricename+'</span>'
+            +'<span class = "price">'+"&#8377;"+leastprice+'</span>'
+            +'</a></div>';
+        }
+        else
+        {
+            document.getElementById("bestebay").innerHTML = '<h1 style="margin-top: 170px;margin-left: 80px;">No products</h1>'; 
+        }
+
     });
 }
 

@@ -270,27 +270,29 @@ body{
     justify-content: center;
     width: 33%;
     height: 400px;
-    border: 3px solid rgb(99, 216, 99);
+    border: 3px solid rgb(214, 123, 19);
     border-radius: 10px;
     background-color: white;
-  }
-
-  #bestamazon .products{
-    border: black;
   }
 
   #bestflipkart{
     width: 33%;
     height: 400px;
-    border: 3px solid rgb(99, 216, 99);
+    border: 3px solid rgb(57, 87, 187);
     border-radius: 10px;
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #bestebay{
     width: 33%;
     height: 400px;
-    border: 3px solid rgb(99, 216, 99);
+    border: 3px solid rgb(42, 30, 54);
     border-radius: 10px;
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
