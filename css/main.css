@@ -35,7 +35,7 @@ body{
 
 input.box{
     font-size: 40px;
-    width: 75%;
+    width: 60%;
     transition: width 0.4s ease-in-out;
     margin: 20px;
     border-radius: 30px;
@@ -44,7 +44,7 @@ input.box{
 }
 
 input.box:hover{
-    color: red;
+    color: #1F0101;
 }
 
 form{
@@ -85,4 +85,30 @@ footer{
 
 .copy{
     margin-left: 40px;
+}
+
+a{
+    margin-top: 20px;
+    text-decoration: none;
+    color:white;
+}
+
+a:hover{
+    color : red;
+}
+
+.logoshoppers{
+    display: inline;
+    border-top: 3px white dashed;
+    border-left: 3px white solid;
+    border-bottom: 3px white solid;
+}
+
+.logosearch{
+    display: inline;
+    border-bottom: 10px white double;
+}
+
+.main h1{
+    color: black;
 }

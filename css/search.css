@@ -90,7 +90,7 @@ body{
     color: green;
     font:25px;
   }
-  <!--Change this it is not working as intended
+  /*Change this it is not working as intended
 
   .amazon:hover {
     -webkit-animation-name: move;
@@ -108,7 +108,7 @@ body{
       transform: translateX(1000px);
     }
   }
-  -->
+  */
 
   .amazon img{
     width: 200px;
