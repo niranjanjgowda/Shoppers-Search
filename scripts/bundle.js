@@ -20640,10 +20640,11 @@ function scrape()
     async function test(url){
         try{
             const temp = await axios.get(url);
+            document.getElementById("bestall").style = "visibility: visible;"
         }
         catch(e)
         {
-            document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK</a></center></h1>'; 
+            document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK </a> & Check your Internet connection</center></h1>'; 
         }
     }
 
@@ -20701,66 +20702,109 @@ function scrape()
     let leastpricepricename = "";
     let leastpriceurl = "";
     let leastpriceimg = "";
-    let leastpricewebsite = "";
 
-    test(e_url);
+    test(e_url).then();
 
     extractProductDetailsAmazon(a_url).then(products => {
-        pdata += '<h1>Amazon</h1><div class="amazon">';
+        pdata += '<h1>Amazon</h1><div id="amazon" class="amazon">';
+        let count = 0 ;
         for(i=0;i<products.length-1;i++)
         {
         if(products[i]["name"]!=""&&products[i]["price"]!=""&&products[i]["price"]>(minprice/80))
         {
+            count+=1;
          pdata += '<div class="products"> <a target="_blank" href="'+'https://www.amazon.com'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
             +'<span class = "name">'+products[i]["name"]+'</span>'
             +'<span class = "price">'+"&#8377;"+(products[i]["price"]*coverstion_rate_inr_to_usd).toFixed(0)+'</span>'
             +'</a></div>';
-            
-            if(leastprice>=products[i]["price"]*80)
+
+            if(parseFloat(products[i]["price"])<parseFloat(""+leastprice))
             {
-                leastprice = products[i]["price"]*80;
+                leastprice = products[i]["price"];
                 leastpricepricename = products[i]["name"];
                 leastpriceurl = "https://www.amazon.com"+products[i]["productUrl"];
                 leastpriceimg = products[i]["imageUrl"];
-                leastpricewebsite = "amazon";
             }
         }
         }
         pdata +="</div>"
         document.getElementById("product-list-amazon").innerHTML = pdata;
+        if(count==0)
+            document.getElementById("amazon").innerHTML = "<h1 style='text-align:center;margin-left:15%;'>No Products Available please try again later</h1>";
+
+        if(leastprice!=200000)
+        {
+            document.getElementById("bestamazon").innerHTML = '<div class="products"> <a target="_blank" href="'+'https://www.amazon.com'+leastpriceurl+'">'
+            +'<img src="'+leastpriceimg+'" alt="'+leastpricepricename+'" height="" width=""><br>'
+            +'<span class = "name">'+leastpricepricename+'</span>'
+            +'<span class = "price">'+"&#8377;"+(leastprice*coverstion_rate_inr_to_usd).toFixed(0)+'</span>'
+            +'</a></div>';
+        }
+        else
+        {
+            document.getElementById("bestflipkart").innerHTML = '<h1 style="margin-top: 170px;margin-left: 80px;">No products</h1>'; 
+        }
+
     });
     
 
     extractProductDetailsFlipkart(f_url).then(products => {
-        fdata = '<h1>FlipKart</h1><div class="flipkart">';
+        fdata = '<h1>FlipKart</h1><div id="flipkart" class="flipkart">';
+        let count = 0;
+        leastprice = 2000000;
+        leastpriceurl = "";
         for(i=0;i<products.length-1;i++)
         {
         if(products[i]["name"]!=""&&products[i]["price"]!="")
         {
+            count+=1;
          fdata += '<div class="products"> <a target="_blank" href="'+'https://www.flipkart.com'+products[i]["productUrl"]+'">'
             +'<img src="'+products[i]["imageUrl"]+'" alt="'+products[i]["name"]+'" height="" width=""><br>'
             +'<span class = "price">'+products[i]["price"]+'</span>'+'<span class = "name">'
             +products[i]["name"]+'</span>'+'</a></div>';
-        if(leastprice>=products[i]["price"])
+        console.log("leastprice : "+leastprice+"   product price: "+parseInt((products[i]["price"].split("₹")[1]).replaceAll(",","")));
+        if(leastprice>=parseInt((products[i]["price"].split("₹")[1]).replaceAll(",","")))
         {
-            leastprice = products[i]["price"];
+            leastprice = parseInt((products[i]["price"].split("₹")[1]).replaceAll(",",""));
             leastpricepricename = products[i]["name"];
-            leastpriceurl = "https://www.flipkart.com" + products[i]["productUrl"];
+            leastpriceurl = 'https://www.flipkart.com' + products[i]["productUrl"];
             leastpriceimg = products[i]["imageUrl"];
-            leastpricewebsite = "flipkart";
         }
         }
         }
         fdata +="</div>"
         document.getElementById("product-list-flipkart").innerHTML = fdata;
+        if(count==0)
+        {
+            document.getElementById("flipkart").innerHTML = "<h1 style='text-align:center;margin-left:15%;'>No Products Available please try again later</h1>";
+        }
+
+        if(leastprice!=200000)
+        {
+            document.getElementById("bestflipkart").innerHTML = '<div class="products" style="margin-left: 50px;'
+            +"margin-top: 20px;"
+            +'> <a target="_blank" href="'+leastpriceurl+'">'
+            +'<img src="'+leastpriceimg+'" alt="'+leastpricepricename+'" height="" width=""><br>'
+            +'<span class = "name">'+leastpricepricename+'</span>'
+            +'<span class = "price">'+"&#8377;"+leastprice+'</span>'
+            +'</a></div>';
+        }
+        else
+        {
+            document.getElementById("bestflipkart").innerHTML = '<h1 style="margin-top: 170px;margin-left: 80px;">No products</h1>'; 
+        }
+
     });
 
     
     extractProductDetailsebay(e_url).then(products => {
-        edata = '<h1>EBAY</h1><div class="E-bay">';
+        edata = '<h1>EBAY</h1><div id="E-bay" class="E-bay">';
+        let count = 0;
+        leastprice = 200000;
         for(i=1;i<products.length-1;i++)
         {
+            count+=1;
         if(products[i]["name"]!=""&&products[i]["price"]!=""&&products[i]["price"].split("$")[1]*80>minprice)       
         {
          edata += '<div class="products"> <a target="_blank" href="'+products[i]["productUrl"]+'">'
@@ -20772,14 +20816,9 @@ function scrape()
         }
         edata +="</div>";
         document.getElementById("product-list-ebay").innerHTML = edata;
-
-        if(leastprice)
+        if(count==0)
         {
-            document.getElementById("bestmatch").innerHTML = "<h1>best price on "+leastpricewebsite+"</h1>"+
-            '<a target="_blank" href = "'+ leastpriceurl +'">+<img src="'+ leastpriceimg +'" alt="'+
-            leastpricepricename +'" height="" width=""><br>'
-            +'<span id="price">'+products[i]["price"]+'</span>'+'</a>';
-            console.log(leastprice + leastpriceurl + leastpricewebsite);
+            document.getElementById("E-bay").innerHTML = "<h1 style='text-align:center;margin-left:15%;'>No Products Available please try again later</h1>";
         }
     });
 }
