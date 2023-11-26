@@ -14,7 +14,7 @@ function scrape()
         }
         catch(e)
         {
-            document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en">CORS UNBLOCK </a> & Check your Internet connection</center></h1>'; 
+            document.getElementById("cors").innerHTML = '<h1><center>Install or Enable <a href="https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino">CORS UNBLOCK </a> or Check your Internet connection</center></h1>'; 
         }
     }
 
